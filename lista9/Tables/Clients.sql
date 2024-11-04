@@ -1,0 +1,6 @@
+CREATE TABLE clients (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  birthday DATE NOT NULL,
+  cpf VARCHAR(11) UNIQUE NOT NULL
+);
