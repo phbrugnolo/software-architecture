@@ -1,0 +1,11 @@
+class Customer
+    Attributes
+        ID: Integer PK,
+        Name: String,
+        Birthday: Date,
+        CPF: String,
+        AddressId: Address
+
+    Methods
+        ChangeCustomerName(Customer, Name)
+            Customer.Name = Name 

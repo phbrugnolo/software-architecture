@@ -1,0 +1,19 @@
+class Address
+    Attributes
+        ID: Integer PK,
+        CEP: String,
+        Logradouro: String,
+        Complemento: String,
+        Bairro: String,
+        localidade: String,
+        uf: String,
+        estado: String,
+        regiao: String,
+        erro: Boolean
+
+    Methods
+        ChangeAddress(Address, CEP)
+            if(erro) 
+                return "CEP not found"
+            else 
+                Address.CEP = CEP
