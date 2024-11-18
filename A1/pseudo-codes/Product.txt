@@ -1,11 +1,12 @@
 Class Product 
     Attributes
-    Name: double
-    Quantity: Integer
-    CategoryId: CategoryId
-    SellerId: Seller
+        ID: Integer PK
+        Name: double
+        Quantity: Integer
+        CategoryId: CategoryId
+        SellerId: Seller
 
     Methods
-    AddStock(Product, Quantity)
-        Product.Quantity = Product.Quantity + Quantity
+        AddStock(Product, Quantity)
+            Product.Quantity = Product.Quantity + Quantity
         
