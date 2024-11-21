@@ -1,11 +1,10 @@
 class Customer
     Attributes
-        ID: Integer PK,
-        Name: String,
-        Birthday: Date,
-        CPF: String,
-        AddressId: Address
-
+        ID: Integer PK
+        Name: String
+        Birthday: Date
+        CPF: String
+        AddressID: Address FK
     Methods
-        ChangeCustomerName(Customer, Name)
-            Customer.Name = Name 
+        GetAge
+        return CurrentDate.Year - Birthday.Year

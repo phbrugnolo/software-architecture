@@ -1,10 +1,11 @@
-Class Product 
+class Product
     Attributes
         ID: Integer PK
-        Name: double
+        Name: String
         Quantity: Integer
-        CategoryId: CategoryId
-        SellerId: Seller
+        Price: Double
+        CategoryID: Category FK
+        SellerID: Seller FK
 
     Methods
         AddStock(Product, Quantity)

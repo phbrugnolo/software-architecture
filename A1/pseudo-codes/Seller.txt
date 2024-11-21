@@ -1,10 +1,7 @@
 class Seller 
-    ID: Integer PK,
-    Name: String,
-    CNPJ: String,
-    Products[]: Array<Product>
-    AddressId: Address
-
-    Methods
-        ChangeSellerName(Seller, Name)
-            Seller.Name = Name
+    Attributes
+        ID: Integer PK,
+        Name: String,
+        CNPJ: String,
+        Products[]: Array<Product>
+        AddressID: Address FK

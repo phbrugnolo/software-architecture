@@ -1,0 +1,15 @@
+class Order
+    Attributes
+        ID: Integer PK
+        CustomerID: Customer FK
+        Products[]: Array<Product>
+        TotalValue: Float
+        PaymentID: Payment FK
+
+    Methods
+        CalculateTotalValue
+            if (!Products.empty)
+                for (Product in Products)
+                    TotalValue += Product.Price * Product.Quantity
+            else 
+                return 0

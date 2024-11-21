@@ -1,0 +1,18 @@
+class Cart
+    Attributes
+        ID: Integer PK
+        CustomerID: Customer FK
+        Products[]: Array<Product>
+
+    Methods
+        AddProduct(product: Product)
+            Products.append(product)
+
+        RemoveProduct(productID: Integer)
+            Products.removeIf(product => product.ID == productID)
+
+        GetCartTotal
+            total = 0
+            for (Product in Products)
+                total += Product.Price * Product.Quantity
+            return total

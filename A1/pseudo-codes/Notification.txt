@@ -1,0 +1,6 @@
+class Notification
+  Attributes
+    ID: Integer PK
+    Message: String
+    SentDate: Date
+    CustomerID: Customer FK

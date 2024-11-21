@@ -1,0 +1,7 @@
+class Payment
+    Attributes
+        ID: Integer PK
+        Method: String
+        Status: String
+        PaymentDate: Date
+        Amount: Float

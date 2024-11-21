@@ -1,8 +1,5 @@
-Class Category
-    Attributes
-        Id: Integer PK,
-        Name: String
+class Category
+  Attributes
+    Id: Integer PK,
+    Name: String
 
-    Methods
-        ChangeCategoryName(Category, Name)
-            Category.Name = Name
