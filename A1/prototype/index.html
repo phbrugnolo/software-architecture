@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Produtos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+    }
+    .search-bar input {
+      padding: 5px 10px;
+      font-size: 16px;
+    }
+    .filter-container {
+      display: flex;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .filter-container select {
+      padding: 8px;
+      font-size: 16px;
+    }
+    .product-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .product-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 10px;
+    }
+    .product-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .product-card h3 {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    .product-card p {
+      font-size: 14px;
+      color: #555;
+    }
+    .product-card .price {
+      font-size: 16px;
+      color: #333;
+      font-weight: bold;
+    }
+    .product-card button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .product-card button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Catálogo de Produtos Sustentáveis</h1>
+    <div class="search-bar">
+      <input type="text" id="search" placeholder="Buscar produtos...">
+    </div>
+  </header>
+
+  <div class="filter-container">
+    <select id="category-filter">
+      <option value="">Categoria</option>
+      <option value="organico">Orgânico</option>
+      <option value="reciclavel">Reciclável</option>
+      <option value="impacto">Baixo Impacto</option>
+    </select>
+    <select id="price-filter">
+      <option value="">Preço</option>
+      <option value="baixo">Até R$50</option>
+      <option value="medio">R$50 a R$150</option>
+      <option value="alto">Acima de R$150</option>
+    </select>
+    <select id="impact-filter">
+      <option value="">Impacto Ambiental</option>
+      <option value="baixo">Baixo</option>
+      <option value="medio">Médio</option>
+      <option value="alto">Alto</option>
+    </select>
+  </div>
+
+  <div class="product-container" id="product-container">
+  </div>
+
+  <script>
+    const products = [
+      { name: 'Produto 1', category: 'organico', price: 40, impact: 'baixo', image: 'https://via.placeholder.com/200' },
+      { name: 'Produto 2', category: 'reciclavel', price: 120, impact: 'medio', image: 'https://via.placeholder.com/200' },
+      { name: 'Produto 3', category: 'impacto', price: 180, impact: 'alto', image: 'https://via.placeholder.com/200' },
+      { name: 'Produto 4', category: 'organico', price: 60, impact: 'baixo', image: 'https://via.placeholder.com/200' },
+    ];
+
+    const productContainer = document.getElementById('product-container');
+    const searchInput = document.getElementById('search');
+    const categoryFilter = document.getElementById('category-filter');
+    const priceFilter = document.getElementById('price-filter');
+    const impactFilter = document.getElementById('impact-filter');
+
+    function renderProducts(filteredProducts) {
+      productContainer.innerHTML = '';
+      filteredProducts.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.classList.add('product-card');
+        productCard.innerHTML = `
+          <img src="${product.image}" alt="${product.name}">
+          <h3>${product.name}</h3>
+          <p>${product.category}</p>
+          <p class="price">R$${product.price}</p>
+          <button>Adicionar ao Carrinho</button>
+        `;
+        productContainer.appendChild(productCard);
+      });
+    }
+
+    function filterProducts() {
+      let filteredProducts = products;
+
+      const searchValue = searchInput.value.toLowerCase();
+      if (searchValue) {
+        filteredProducts = filteredProducts.filter(product =>
+          product.name.toLowerCase().includes(searchValue)
+        );
+      }
+
+      const categoryValue = categoryFilter.value;
+      if (categoryValue) {
+        filteredProducts = filteredProducts.filter(product => product.category === categoryValue);
+      }
+
+      const priceValue = priceFilter.value;
+      if (priceValue) {
+        if (priceValue === 'baixo') {
+          filteredProducts = filteredProducts.filter(product => product.price <= 50);
+        } else if (priceValue === 'medio') {
+          filteredProducts = filteredProducts.filter(product => product.price > 50 && product.price <= 150);
+        } else if (priceValue === 'alto') {
+          filteredProducts = filteredProducts.filter(product => product.price > 150);
+        }
+      }
+
+      const impactValue = impactFilter.value;
+      if (impactValue) {
+        filteredProducts = filteredProducts.filter(product => product.impact === impactValue);
+      }
+
+      renderProducts(filteredProducts);
+    }
+
+    searchInput.addEventListener('input', filterProducts);
+    categoryFilter.addEventListener('change', filterProducts);
+    priceFilter.addEventListener('change', filterProducts);
+    impactFilter.addEventListener('change', filterProducts);
+
+    renderProducts(products);
+  </script>
+
+</body>
+</html>
